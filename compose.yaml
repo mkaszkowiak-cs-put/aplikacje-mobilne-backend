@@ -1,0 +1,8 @@
+services:
+  app:
+    build: .
+    ports:
+      - 2137:80
+    volumes:
+      - ./:/app
+    command: /start-reload.sh

@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "aplikacje-mobilne"
+version = "0.1.0"
+description = "Backend for course project Aplikacje Mobilne"
+authors = ["Maciej Kaszkowiak <maciej@kaszkowiak.org>"]
+readme = "README.md"
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+sqlalchemy = "^2.0.30"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
