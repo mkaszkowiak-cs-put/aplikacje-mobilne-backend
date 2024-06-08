@@ -12,3 +12,16 @@ ngrok http --domain=resolved-heron-pleasing.ngrok-free.app 2137
 ```
 
 **Dane się zresetują przy reboocie lub modyfikacji plików**
+
+Aby zdeployować z fly.io, z wykorzystaniem `flyctl`:
+
+```
+fly launch  # pierwsze uruchomienie
+fly deploy  # każde kolejne
+```
+
+Podglądanie logów:
+
+```
+flyctl logs
+```

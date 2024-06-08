@@ -1,0 +1,26 @@
+# fly.toml app configuration file generated for brew on 2024-06-08T23:41:08+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'brew'
+primary_region = 'waw'
+
+[build]
+
+[[mounts]]
+  source = 'brew_data'
+  destination = '/data'
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '0.5gb'
+  cpu_kind = 'shared'
+  cpus = 1
