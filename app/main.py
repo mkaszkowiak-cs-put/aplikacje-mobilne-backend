@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from . import models, database, schemas
 from datetime import datetime 
 from typing import List
+from fastapi import HTTPException
 
 app = FastAPI()
 
@@ -88,3 +89,14 @@ def read_root():
 def get_coffee(db: Session = Depends(get_db), skip: int = 0, limit: int = 100):
     response = db.query(models.Coffee).offset(skip).limit(limit).all()
     return response
+
+@app.post("/review", response_model=schemas.Review)
+def create_review(review: schemas.ReviewCreate, db: Session = Depends(get_db)):
+    coffee = db.query(models.Coffee).filter(models.Coffee.id == review.coffee_id).first()
+    if not coffee:
+        raise HTTPException(status_code=404, detail="Coffee not found")
+    new_review = models.Review(**review.dict())
+    db.add(new_review)
+    db.commit()
+    db.refresh(new_review)
+    return new_review
