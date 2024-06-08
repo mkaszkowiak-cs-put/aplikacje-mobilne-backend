@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from . import models, database, schemas
 from datetime import datetime 
+from typing import List
 
 app = FastAPI()
 
@@ -65,5 +66,4 @@ def read_root():
 @app.get("/coffee", response_model=list[schemas.Coffee])
 def get_coffee(db: Session = Depends(get_db), skip: int = 0, limit: int = 100):
     response = db.query(models.Coffee).offset(skip).limit(limit).all()
-    print(response)
     return response

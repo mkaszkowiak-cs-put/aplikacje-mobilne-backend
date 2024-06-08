@@ -10,22 +10,22 @@ class ReviewBase(BaseModel):
     date: datetime
 
     class Config:
-        orm_mode: True
+        orm_mode = True
 
 class ReviewCreate(ReviewBase):
     coffee_id: int
     class Config:
-        orm_mode: True
+        orm_mode = True
 
 class Review(ReviewBase):
     id: int
     coffee_id: int
     class Config:
-        orm_mode: True
+        orm_mode = True
 
 class Coffee(BaseModel):
     id: int
-    #reviews: List[Review] = []
+    reviews: List[Review] = []
     name: str
     manufacturer: str
     rating: Optional[float] = None
@@ -36,6 +36,4 @@ class Coffee(BaseModel):
     roast: str
     notes: str
     class Config:
-        orm_mode: True
-
-    
+        orm_mode = True
