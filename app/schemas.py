@@ -23,7 +23,6 @@ class ReviewBase(BaseModel):
     rating: float
     user: str
     review: str
-    image_url: Optional[str] = None
     date: UTCDatetime
 
     class Config:
@@ -37,6 +36,7 @@ class ReviewCreate(ReviewBase):
 class Review(ReviewBase):
     id: int
     coffee_id: int
+    image_url: Optional[str] = None
     class Config:
         orm_mode = True
 
