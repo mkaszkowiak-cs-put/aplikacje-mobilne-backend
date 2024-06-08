@@ -1,13 +1,30 @@
 from typing import List, Optional
 from pydantic import BaseModel
-from datetime import datetime
+from pydantic.datetime_parse import parse_datetime
+import datetime
+
+class UTCDatetime(datetime.datetime):
+    @classmethod
+    def __get_validators__(cls):
+        yield parse_datetime  # default Pydantic behavior
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, value) -> str:
+        if value.tzinfo is None:
+            return value.replace(tzinfo=datetime.timezone.utc)
+
+        # Convert to UTC
+        return value.astimezone(datetime.timezone.utc)
+        # or alternatively, return the original value:
+        # return value
 
 class ReviewBase(BaseModel):
     rating: float
     user: str
     review: str
     image_url: Optional[str] = None
-    date: datetime
+    date: UTCDatetime
 
     class Config:
         orm_mode = True

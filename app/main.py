@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from . import models, database, schemas
-from datetime import datetime 
+import datetime
 from typing import List
 from fastapi import HTTPException
 
@@ -53,7 +53,7 @@ reviews = [
         "coffee_id": 1,
         "rating": 4.0,
         "review": "Prawdziwa perełka. Jej stopień palenia idealnie nadaje się do przelewowych metod parzenia, a bogaty profil smakowy wypełniony owocowością i słodyczą zachwyca z każdym łykiem.\n\nTo kawa, która zachwyci nawet najbardziej wymagających koneserów. \n\nOpakowanie w postaci brązowego słoika PET jest bardzo eco-friendly! ♻️\n\nOdejmuję jedną gwiazdkę za to, że wstałem lewą nogą z łóżka.",
-        "date": datetime.now(),
+        "date": datetime.datetime.now(datetime.timezone.utc),
         "user": "Maciej Kaszkowiak",
         "image_url": "TODO"
     },
@@ -62,7 +62,7 @@ reviews = [
         "coffee_id": 1,
         "rating": 1.0,
         "review": "Ta kawa z Kenii to kolejna przereklamowana propozycja, która nie zasługuje na tyle uwagi, ile się jej poświęca. \n\nPalona w jakiejś tam palarni przez Wicemistrza Polski Roasting 2020 – serio? Czy to jest powód, żeby uznać ją za coś wyjątkowego? \n\nJasna paloność? Owszem, jak dla mnie to po prostu niedopalone ziarna. A ta \"wysoka owocowość\"? To tylko chwyt marketingowy. Kawa ma być kawą, a nie jakimś soczystym owocem. Poza tym, co to za wynik w cuppingu - 87.5 na 100? To nie ocena, to jakaś loteria. I ten plastikowy słoik, który niby jest eco-friendly? Śmiech na sali. W czasach, gdy powinniśmy dbać o środowisko, proponują nam plastik. Lepiej zainwestować w porządną kawę, a nie w ten bubel.",
-        "date": datetime.now(),
+        "date": datetime.datetime.now(datetime.timezone.utc),
         "user": "Adam Jałocha",
         "image_url": "TODO"
     }
